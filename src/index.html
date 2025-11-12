@@ -8,7 +8,102 @@
     <script type="module" src="./js/controller.js"></script>
   </head>
   <body>
-    <h1>Parcel Vanilla App</h1>
-    <p>Edit <code>src/index.html</code> to get started!</p>
+    <div class="background">
+      <div class="background__img">
+        <picture>
+          <!-- Dark mode, mobile -->
+          <source
+            srcset="./images/bg-mobile-dark.jpg"
+            media="(max-width: 23.4375rem) and (prefers-color-scheme: dark)"
+          />
+
+          <!-- Light mode, mobile -->
+          <source
+            srcset="./images/bg-mobile-light.jpg"
+            media="(max-width: 23.4375rem) and (prefers-color-scheme: light)"
+          />
+
+          <!-- Dark mode, desktop -->
+          <source
+            srcset="./images/bg-desktop-dark.jpg"
+            media="(min-width: 23.4376rem) and (prefers-color-scheme: dark)"
+          />
+
+          <!-- Light mode, desktop -->
+          <source
+            srcset="./images/bg-desktop-light.jpg"
+            media="(min-width: 23.4376rem) and (prefers-color-scheme: light)"
+          />
+
+          <!-- Fallback (in case prefers-color-scheme unsupported) -->
+          <img src="./images/bg-desktop-light.jpg" alt="Hero image" />
+        </picture>
+      </div>
+    </div>
+    <header class="header">
+      <h1 class="header__title">TODO</h1>
+      <button class="btn__theme">
+        <svg
+          class="btn__icon btn__icon--light"
+          xmlns="http://www.w3.org/2000/svg"
+          width="26"
+          height="26"
+        >
+          <path
+            fill="currentColor"
+            fill-rule="evenodd"
+            d="M13 21a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-5.657-2.343a1 1 0 010 1.414l-2.121 2.121a1 1 0 01-1.414-1.414l2.12-2.121a1 1 0 011.415 0zm12.728 0l2.121 2.121a1 1 0 01-1.414 1.414l-2.121-2.12a1 1 0 011.414-1.415zM13 8a5 5 0 110 10 5 5 0 010-10zm12 4a1 1 0 110 2h-3a1 1 0 110-2h3zM4 12a1 1 0 110 2H1a1 1 0 110-2h3zm18.192-8.192a1 1 0 010 1.414l-2.12 2.121a1 1 0 01-1.415-1.414l2.121-2.121a1 1 0 011.414 0zm-16.97 0l2.121 2.12A1 1 0 015.93 7.344L3.808 5.222a1 1 0 011.414-1.414zM13 0a1 1 0 011 1v3a1 1 0 11-2 0V1a1 1 0 011-1z"
+          />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26">
+          <path
+            fill="currentColor"
+            fill-rule="evenodd"
+            d="M13 0c.81 0 1.603.074 2.373.216C10.593 1.199 7 5.43 7 10.5 7 16.299 11.701 21 17.5 21c2.996 0 5.7-1.255 7.613-3.268C23.22 22.572 18.51 26 13 26 5.82 26 0 20.18 0 13S5.82 0 13 0z"
+          />
+        </svg>
+      </button>
+    </header>
+    <main>
+      <section class="section section__add-tasks">
+        <form class="form" action="">
+          <div class="form__group">
+            <input
+              placeholder="Create a new todo…"
+              type="text"
+              class="form__input"
+            />
+          </div>
+        </form>
+      </section>
+      <section class="section section__tasks">
+        <ul class="tasks-list">
+          <li>
+            <input type="checkbox" id="task-1" name="task-1" />
+            <label for="task-1">Buy groceries</label>
+          </li>
+          <li>
+            <input type="checkbox" id="task-2" name="task-2" checked />
+            <label for="task-2">Finish report</label>
+          </li>
+          <li>
+            <input type="checkbox" id="task-3" name="task-3" />
+            <label for="task-3">Call the plumber</label>
+          </li>
+        </ul>
+        <div class="tasks-overview">
+          <span class="tasks-counter">5 items left</span>
+          <div class="task-filters">
+            <button class="btn btn__filter" data-filter="all">All</button>
+            <button class="btn btn__filter" data-filter="active">Active</button>
+            <button class="btn btn__filter" data-filter="completed">
+              Completed
+            </button>
+          </div>
+          <button class="btn btn__clear">Clear Completed</button>
+        </div>
+        <div class="tasks-help-text">Drag and drop to reorder list</div>
+      </section>
+    </main>
   </body>
 </html>
