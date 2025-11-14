@@ -1,0 +1,17 @@
+.section,
+.header {
+  max-width: 36.75rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.header {
+  padding-top: 4rem;
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.section.section__add-tasks {
+  margin-bottom: 2rem;
+}

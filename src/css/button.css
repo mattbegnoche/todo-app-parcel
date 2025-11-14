@@ -1,0 +1,18 @@
+.btn__theme {
+  color: var(--color--white, #fff);
+  width: 1.625rem;
+  height: 1.625rem;
+}
+
+.btn__icon.btn__icon--light {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .btn__icon.btn__icon--dark {
+    display: none;
+  }
+  .btn__icon.btn__icon--light {
+    display: block;
+  }
+}

@@ -1,0 +1,45 @@
+/* Typography */
+body {
+  font-family: var(--font--family);
+  font-size: var(--font--body-size);
+  font-weight: var(--font--weight-normal);
+  line-height: 1.5;
+  color: var(--color--navy-850, #494c6b);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #c8cbe7;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font--family);
+  font-weight: var(--font--weight-bold);
+}
+
+/* Specific typography for the TODO app */
+.header__title {
+  font-size: 2.5rem;
+  letter-spacing: 0.375em;
+  font-family: var(--font--family);
+  font-weight: var(--font--weight-bold);
+  text-transform: uppercase;
+  color: var(--color--white, #fff);
+  font-style: normal;
+  line-height: normal;
+}
+
+.todo-item {
+  font-family: var(--font--family);
+  font-weight: var(--font--weight-normal);
+}
+
+.todo-item--completed {
+  text-decoration: line-through;
+}

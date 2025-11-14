@@ -1,0 +1,35 @@
+:root {
+  /* Typography - Variable Font Weights */
+  --font--family: 'Josefin Sans', sans-serif;
+  --font--weight-light: 300;
+  --font--weight-normal: 400;
+  --font--weight-medium: 500;
+  --font--weight-semibold: 600;
+  --font--weight-bold: 700;
+  --font--body-size: 1.125rem;
+
+  /* COLORS */
+  /* Neutral*/
+  --color--white: #ffffff;
+
+  /* Primary*/
+  --color--blue-500: #3a7cfd;
+  --color--check-bg: linear-gradient(to right, #55ddff, #c058f3);
+
+  /* Light Theme*/
+  --color--gray-50: #fafafa;
+  --color--purple-300: #d1d2da;
+  --color--gray-300: #d1d2da;
+  --color--gray-600: #9495a5;
+  --color--navy-850: #494c6b;
+
+  /* Dark Theme */
+  --color--navy-950: #181824;
+  --color--navy-900: #25273d;
+  --color--purple-300: #d1d2da;
+  --color--purple-100: #e3e4f1;
+  --color--purple-600: #5b5e7e;
+  --color--purple-700: #4a4d69;
+  --color--purple-800: #393c4b;
+  --color--gray-600: #181824;
+}
