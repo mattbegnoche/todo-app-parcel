@@ -16,3 +16,17 @@
     display: block;
   }
 }
+
+.btn__filter {
+  font-weight: var(--font--weight-bold);
+  color: #9495a5;
+}
+
+.btn__filter:hover {
+  color: var(--color--navy-850);
+}
+
+.btn__filter--active {
+  color: var(--color--blue-500);
+  font-weight: var(--font--weight-bold);
+}

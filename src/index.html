@@ -79,6 +79,7 @@
               type="text"
               class="form__input"
             />
+            <div class="input__circle"></div>
           </div>
         </form>
       </section>
@@ -149,7 +150,12 @@
           <div class="tasks-overview">
             <span class="tasks-counter">5 items left</span>
             <div class="task-filters">
-              <button class="btn btn__filter" data-filter="all">All</button>
+              <button
+                class="btn btn__filter btn__filter--active"
+                data-filter="all"
+              >
+                All
+              </button>
               <button class="btn btn__filter" data-filter="active">
                 Active
               </button>
@@ -160,7 +166,6 @@
             <button class="btn btn__clear">Clear Completed</button>
           </div>
         </div>
-        <div class="tasks-help-text">Drag and drop to reorder list</div>
       </section>
     </main>
   </body>

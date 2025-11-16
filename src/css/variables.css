@@ -8,6 +8,9 @@
   --font--weight-bold: 700;
   --font--body-size: 1.125rem;
 
+  /* BORDER */
+  --border--width: 0.0625rem;
+
   /* COLORS */
   /* Neutral*/
   --color--white: #ffffff;

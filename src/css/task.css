@@ -10,12 +10,36 @@
   padding: 0;
 }
 
+.form__group {
+  position: relative;
+}
+
 .form__group input {
+  outline: none;
+  caret-color: var(--color--blue-500);
+  position: relative;
   width: 100%;
   background-color: var(--task--background-color);
-  padding: var(--task--padding-vertical) var(--task--padding-horizontal);
+  padding: var(--task--padding-vertical) var(--task--padding-horizontal)
+    var(--task--padding-vertical) 4.5rem;
   border-radius: var(--task--border-radius);
   box-shadow: var(--task--box-shadow);
+  border: none;
+}
+/* 
+.form__group input:focus-visible {
+  outline: 0.125rem solid black;
+} */
+
+.input__circle {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: var(--border--width) solid var(--color--purple-100);
+  border-radius: 50%;
+  position: absolute;
+  left: var(--task--padding-horizontal);
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* TASK ITEM */
@@ -26,7 +50,7 @@
   column-gap: 1.5rem;
   margin: 0;
   padding: var(--task--padding-vertical) var(--task--padding-horizontal);
-  border-bottom: 0.0625rem solid var(--color--purple-100, #d1d2da);
+  border-bottom: var(--border--width) solid var(--color--purple-100, #d1d2da);
 }
 
 /* TASK LABEL */
@@ -44,7 +68,7 @@
   appearance: none;
   width: 1.5rem;
   height: 1.5rem;
-  border: 0.0625rem solid var(--color--purple-100);
+  border: var(--border--width) solid var(--color--purple-100);
   border-radius: 50%;
   cursor: pointer;
   position: relative;
@@ -66,4 +90,17 @@
   display: none;
   align-items: center;
   margin-left: auto;
+}
+
+.tasks-overview {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem var(--task--padding-horizontal) var(--task--padding-vertical)
+    var(--task--padding-horizontal);
+  font-size: 0.875rem;
+}
+
+.task-filters {
+  display: flex;
+  column-gap: 1.19rem;
 }
