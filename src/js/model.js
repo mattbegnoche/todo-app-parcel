@@ -55,6 +55,16 @@ export const updateTask = function (taskId, taskCompeletedStatus) {
   return state.tasks;
 };
 
+export const addTask = function (text) {
+  const task = {
+    id: Date.now() + Math.floor(Math.random() * 1000),
+    text: text,
+    completed: false,
+  };
+  state.tasks.unshift(task);
+  return state.tasks;
+};
+
 export const deleteTask = function (taskId) {
   const taskIndex = state.tasks.findIndex(t => t.id === taskId);
   if (taskIndex === -1) return 'No task found';

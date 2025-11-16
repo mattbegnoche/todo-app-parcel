@@ -1,8 +1,10 @@
 class AppView {
   // App UI Elements
   _btnTheme = document.querySelector('.btn__theme');
+  _formAddTask = document.querySelector('.form');
   _inputField = document.querySelector('.form__input');
   _taskList = document.querySelector('.tasks-list');
+  _taskCheckboxs = document.querySelectorAll('.tasks-list__item input');
   _tasksCounter = document.querySelector('.tasks-counter');
   _tasksOverview = document.querySelector('.tasks-overview');
   _btnFilters = document.querySelectorAll('.btn__filter');
@@ -20,8 +22,30 @@ class AppView {
     this._btnClearCompleted.addEventListener('click', handler);
   }
 
+  addHandlerUpdateTask(handler) {
+    if (!this._taskList) return;
+    this._taskList.addEventListener('change', handler);
+  }
+
+  addHandlerAddTask(handler) {
+    this._formAddTask.addEventListener('submit', function (e) {
+      e.preventDefault();
+      handler();
+    });
+  }
+
   addHandlerDeleteTask(handler) {
     this._taskList.addEventListener('click', handler);
+  }
+
+  getQuery() {
+    const query = this._inputField.value;
+    this._clearQuery();
+    return query;
+  }
+
+  _clearQuery() {
+    this._inputField.value = '';
   }
 
   renderTasks(data) {

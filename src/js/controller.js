@@ -28,6 +28,19 @@ const controlClearCompleted = function () {
   appView.renderTasks(tasks);
 };
 
+const controlUpdateTask = function (e) {
+  const checkbox = e.target.closest('.tasks-list__item input');
+  if (!checkbox) return;
+  const id = +checkbox.id;
+  model.updateTask(id, checkbox.checked);
+};
+
+const controlAddTask = function () {
+  model.addTask(appView.getQuery());
+  appView.renderTasks(model.state.tasks);
+  appView.updateItemsLeft(model.state.numberOfIncompleteTasks());
+};
+
 const controlDeleteTask = function (e) {
   const btn = e.target.closest('.btn__delete-task');
   if (!btn) return;
@@ -48,5 +61,7 @@ const init = function () {
   appView.addHandlerFilter(controlFilter);
   appView.addHandlerClearCompleted(controlClearCompleted);
   appView.addHandlerDeleteTask(controlDeleteTask);
+  appView.addHandlerAddTask(controlAddTask);
+  appView.addHandlerUpdateTask(controlUpdateTask);
 };
 init();
