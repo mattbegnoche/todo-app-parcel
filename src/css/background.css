@@ -11,3 +11,7 @@
     background-color: var(--color--navy-950, #171823);
   }
 }
+
+.background img {
+  width: 100%;
+}

@@ -14,7 +14,7 @@
 
   /* Primary*/
   --color--blue-500: #3a7cfd;
-  --color--check-bg: linear-gradient(to right, #55ddff, #c058f3);
+  --color--check-bg: linear-gradient(120deg, #55ddff, #c058f3);
 
   /* Light Theme*/
   --color--gray-50: #fafafa;
@@ -32,4 +32,16 @@
   --color--purple-700: #4a4d69;
   --color--purple-800: #393c4b;
   --color--gray-600: #181824;
+
+  /* Tasks */
+  --task--padding-vertical: 1.25rem;
+  --task--padding-horizontal: 1.5rem;
+  --task--background-color: var(--color--white);
+  --task--border-radius: 0.3125rem;
+  --task--box-shadow: 0 35px 50px -15px rgba(194, 195, 214, 0.5);
+  /* Dark Theme */
+  @media (prefers-color-scheme: dark) {
+    --task--background-color: var(--color--navy-900);
+    --task--box-shadow: 0 35px 50px -15px rgba(0, 0, 0, 0.5);
+  }
 }
