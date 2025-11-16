@@ -31,6 +31,9 @@ export const state = {
       completed: true,
     },
   ],
+  numberOfIncompleteTasks() {
+    return this.tasks.filter(t => !t.completed).length;
+  },
 };
 
 export const getTasks = function (filter = 'all') {

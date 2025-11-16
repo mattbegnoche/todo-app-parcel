@@ -7,9 +7,6 @@ class AppView {
   _tasksOverview = document.querySelector('.tasks-overview');
   _btnFilters = document.querySelectorAll('.btn__filter');
   _btnClearCompleted = document.querySelector('.btn__clear');
-  // _btnAll = document.querySelector('[data-filter="all"]');
-  // _btnActive = document.querySelector('[data-filter="active"]');
-  // _btnComplete = document.querySelector('[data-filter="complete"]');
 
   addHandlerRender(handler) {
     window.addEventListener('load', handler);
@@ -21,6 +18,10 @@ class AppView {
 
   addHandlerClearCompleted(handler) {
     this._btnClearCompleted.addEventListener('click', handler);
+  }
+
+  addHandlerDeleteTask(handler) {
+    this._taskList.addEventListener('click', handler);
   }
 
   renderTasks(data) {
@@ -36,9 +37,14 @@ class AppView {
     });
   }
 
+  updateItemsLeft(itemsLeft) {
+    // TODO - Create a function to
+    this._tasksCounter.textContent = `${itemsLeft} items left`;
+  }
+
   _generateMarkUp(dataTask) {
     return `
-            <li class="tasks-list__item">
+            <li class="tasks-list__item" data-id=${dataTask.id}>
               <input type="checkbox" id="${dataTask.id}" name="${
       dataTask.id
     }" ${dataTask.completed ? 'checked' : ''} />
