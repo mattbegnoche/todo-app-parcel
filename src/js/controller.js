@@ -55,6 +55,10 @@ const controlDeleteTask = function (e) {
   appView.updateItemsLeft(model.state.numberOfIncompleteTasks());
 };
 
+const controlDragging = function () {
+  // control dragging
+};
+
 const init = function () {
   appView.addHandlerRender(controlTasks);
   appView.addHandlerRender(controlCounter);
@@ -63,5 +67,6 @@ const init = function () {
   appView.addHandlerDeleteTask(controlDeleteTask);
   appView.addHandlerAddTask(controlAddTask);
   appView.addHandlerUpdateTask(controlUpdateTask);
+  appView.addHandlerDragAndDrop(controlDragging);
 };
 init();

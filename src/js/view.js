@@ -38,6 +38,24 @@ class AppView {
     this._taskList.addEventListener('click', handler);
   }
 
+  addHandlerDragAndDrop(handler) {
+    if (!this._taskList) return;
+
+    this._taskList.addEventListener('dragstart', function (e) {
+      console.log(e.target);
+      const item = e.target.closest('.tasks-list__item');
+      if (!item) return;
+      e.dataTransfer.effectAllowed = 'move';
+      item.classList.add('dragging');
+    });
+
+    this._taskList.addEventListener('dragend', function (e) {
+      const item = e.target.closest('.tasks-list__item');
+      if (!item) return;
+      item.classList.remove('dragging');
+    });
+  }
+
   getQuery() {
     const query = this._inputField.value;
     this._clearQuery();
@@ -62,35 +80,33 @@ class AppView {
   }
 
   updateItemsLeft(itemsLeft) {
-    // TODO - Create a function to
     this._tasksCounter.textContent = `${itemsLeft} items left`;
   }
 
   _generateMarkUp(dataTask) {
     return `
-            <li class="tasks-list__item" data-id=${dataTask.id}>
-              <input type="checkbox" id="${dataTask.id}" name="${
-      dataTask.id
-    }" ${dataTask.completed ? 'checked' : ''} />
-              <label for="${dataTask.id}">${dataTask.text}</label>
-              <button class="btn__delete-task">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M17.6777 0.707107L16.9706 0L8.83883 8.13173L0.707107 0L0 0.707107L8.13173 8.83883L0 16.9706L0.707106 17.6777L8.83883 9.54594L16.9706 17.6777L17.6777 16.9706L9.54594 8.83883L17.6777 0.707107Z"
-                    fill="#494C6B"
-                  />
-                </svg>
-              </button>
-            </li>
-    `;
+          <li class="tasks-list__item" data-id="${
+            dataTask.id
+          }" draggable="true">
+            <input
+            type="checkbox"
+            id="${dataTask.id}"
+            name="${dataTask.id}"
+            ${dataTask.completed ? 'checked' : ''}
+            />
+            <label for="${dataTask.id}">${dataTask.text}</label>
+            <button class="btn__delete-task" aria-label="Delete task">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M17.6777 0.707107L16.9706 0L8.83883 8.13173L0.707107 0L0 0.707107L8.13173 8.83883L0 16.9706L0.707106 17.6777L8.83883 9.54594L16.9706 17.6777L17.6777 16.9706L9.54594 8.83883L17.6777 0.707107Z"
+              fill="#494C6B"
+              />
+            </svg>
+            </button>
+          </li>
+  `;
   }
 
   _clearTaskList() {
