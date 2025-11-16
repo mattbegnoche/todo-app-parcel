@@ -6,12 +6,14 @@
 }
 
 /* Dark Theme using @media (prefers-color-scheme: dark) */
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   .background {
     background-color: var(--color--navy-950, #171823);
   }
-}
+} */
 
 .background img {
+  object-fit: cover;
   width: 100%;
+  min-height: 18rem;
 }

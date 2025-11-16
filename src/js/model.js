@@ -25,6 +25,11 @@ export const state = {
       text: 'Deploy to staging',
       completed: true,
     },
+    {
+      id: 6,
+      text: 'Share with your mom',
+      completed: true,
+    },
   ],
 };
 
@@ -32,10 +37,30 @@ export const getTasks = function (filter = 'all') {
   switch (filter) {
     case 'active':
       return state.tasks.filter(t => !t.completed);
-    case 'complete':
+    case 'completed':
       return state.tasks.filter(t => t.completed);
     case 'all':
     default:
       return [...state.tasks];
   }
+};
+
+export const updateTask = function (taskId, taskCompeletedStatus) {
+  const task = state.tasks.find(t => t.id === taskId);
+  if (!task) return 'No task found';
+  task.completed = taskCompeletedStatus;
+  return state.tasks;
+};
+
+export const deleteTask = function (taskId) {
+  const taskIndex = state.tasks.findIndex(t => t.id === taskId);
+  if (taskIndex === -1) return 'No task found';
+  state.tasks.splice(taskIndex, 1);
+  return state.tasks;
+};
+
+export const clearCompletedTasks = function () {
+  const incompleteTasks = state.tasks.filter(t => !t.completed);
+  state.tasks = incompleteTasks;
+  return state.tasks;
 };

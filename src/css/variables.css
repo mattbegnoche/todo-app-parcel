@@ -43,8 +43,8 @@
   --task--border-radius: 0.3125rem;
   --task--box-shadow: 0 35px 50px -15px rgba(194, 195, 214, 0.5);
   /* Dark Theme */
-  @media (prefers-color-scheme: dark) {
+  /* @media (prefers-color-scheme: dark) {
     --task--background-color: var(--color--navy-900);
     --task--box-shadow: 0 35px 50px -15px rgba(0, 0, 0, 0.5);
-  }
+  } */
 }
