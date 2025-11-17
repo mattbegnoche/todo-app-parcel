@@ -33,6 +33,7 @@ const controlUpdateTask = function (e) {
   if (!checkbox) return;
   const id = +checkbox.id;
   model.updateTask(id, checkbox.checked);
+  appView.updateItemsLeft(model.state.numberOfIncompleteTasks());
 };
 
 const controlAddTask = function () {
@@ -55,11 +56,41 @@ const controlDeleteTask = function (e) {
   appView.updateItemsLeft(model.state.numberOfIncompleteTasks());
 };
 
-const controlDragging = function () {
-  // control dragging
+const controlDragDrop = function () {
+  const items = document.querySelectorAll('.tasks-list__item');
+  const newOrder = Array.from(items).map(item => +item.dataset.id);
+  model.reorderTasks(newOrder);
+};
+
+/**
+ * Handle theme toggle button click
+ * Toggles between light and dark mode and updates the view
+ */
+const controlThemeToggle = function () {
+  // Toggle theme in model (also persists to localStorage)
+  const newTheme = model.toggleTheme();
+
+  // Update view to reflect new theme
+  appView.updateTheme(newTheme);
+};
+
+/**
+ * Initialize theme on page load
+ * Respects user's saved preference or system preference
+ */
+const controlThemeInit = function () {
+  // Get initial theme from model (checks localStorage and system preference)
+  const theme = model.initTheme();
+
+  // Apply theme to view
+  appView.updateTheme(theme);
 };
 
 const init = function () {
+  // Initialize theme first (before rendering)
+  controlThemeInit();
+
+  // Render tasks and setup handlers
   appView.addHandlerRender(controlTasks);
   appView.addHandlerRender(controlCounter);
   appView.addHandlerFilter(controlFilter);
@@ -67,6 +98,7 @@ const init = function () {
   appView.addHandlerDeleteTask(controlDeleteTask);
   appView.addHandlerAddTask(controlAddTask);
   appView.addHandlerUpdateTask(controlUpdateTask);
-  appView.addHandlerDragAndDrop(controlDragging);
+  appView.addHandlerDragAndDrop(controlDragDrop);
+  appView.addHandlerThemeToggle(controlThemeToggle);
 };
 init();

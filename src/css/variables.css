@@ -7,44 +7,75 @@
   --font--weight-semibold: 600;
   --font--weight-bold: 700;
   --font--body-size: 1.125rem;
+  --font--small-size: 0.875rem;
 
   /* BORDER */
   --border--width: 0.0625rem;
 
-  /* COLORS */
-  /* Neutral*/
+  /* COLORS - Base colors (theme-independent) */
   --color--white: #ffffff;
-
-  /* Primary*/
   --color--blue-500: #3a7cfd;
   --color--check-bg: linear-gradient(120deg, #55ddff, #c058f3);
 
-  /* Light Theme*/
-  --color--gray-50: #fafafa;
-  --color--purple-300: #d1d2da;
-  --color--gray-300: #d1d2da;
-  --color--gray-600: #9495a5;
-  --color--navy-850: #494c6b;
+  /* Light Theme Colors */
+  --color--light-bg: #fafafa;
+  --color--light-card-bg: #ffffff;
+  --color--light-text: #494c6b;
+  --color--light-text-muted: #9495a5;
+  --color--light-border: #d1d2da;
+  --color--light-hover: #494c6b;
+  --color--light-shadow: rgba(194, 195, 214, 0.5);
 
-  /* Dark Theme */
-  --color--navy-950: #181824;
-  --color--navy-900: #25273d;
-  --color--purple-300: #d1d2da;
-  --color--purple-100: #e3e4f1;
-  --color--purple-600: #5b5e7e;
-  --color--purple-700: #4a4d69;
-  --color--purple-800: #393c4b;
-  --color--gray-600: #181824;
+  /* Dark Theme Colors */
+  --color--dark-bg: #181824;
+  --color--dark-card-bg: #25273d;
+  --color--dark-text: #c8cbe7;
+  --color--dark-text-muted: #5b5e7e;
+  --color--dark-border: #393c4b;
+  --color--dark-hover: #e3e4f1;
+  --color--dark-shadow: rgba(0, 0, 0, 0.5);
+}
 
-  /* Tasks */
+/* Light Theme (default) */
+:root,
+:root[data-theme='light'] {
+  /* Background colors */
+  --bg-color: var(--color--light-bg);
+  --card-bg-color: var(--color--light-card-bg);
+
+  /* Text colors */
+  --text-color: var(--color--light-text);
+  --text-color-muted: var(--color--light-text-muted);
+  --text-color-hover: var(--color--light-hover);
+
+  /* Border and shadow */
+  --border-color: var(--color--light-border);
+  --shadow-color: var(--color--light-shadow);
+
+  /* Task-specific */
   --task--padding-vertical: 1.25rem;
   --task--padding-horizontal: 1.5rem;
-  --task--background-color: var(--color--white);
+  --task--background-color: var(--card-bg-color);
   --task--border-radius: 0.3125rem;
-  --task--box-shadow: 0 35px 50px -15px rgba(194, 195, 214, 0.5);
-  /* Dark Theme */
-  /* @media (prefers-color-scheme: dark) {
-    --task--background-color: var(--color--navy-900);
-    --task--box-shadow: 0 35px 50px -15px rgba(0, 0, 0, 0.5);
-  } */
+  --task--box-shadow: 0 35px 50px -15px var(--shadow-color);
+}
+
+/* Dark Theme */
+:root[data-theme='dark'] {
+  /* Background colors */
+  --bg-color: var(--color--dark-bg);
+  --card-bg-color: var(--color--dark-card-bg);
+
+  /* Text colors */
+  --text-color: var(--color--dark-text);
+  --text-color-muted: var(--color--dark-text-muted);
+  --text-color-hover: var(--color--dark-hover);
+
+  /* Border and shadow */
+  --border-color: var(--color--dark-border);
+  --shadow-color: var(--color--dark-shadow);
+
+  /* Task-specific */
+  --task--background-color: var(--card-bg-color);
+  --task--box-shadow: 0 35px 50px -15px var(--shadow-color);
 }

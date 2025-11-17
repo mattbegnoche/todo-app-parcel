@@ -4,13 +4,7 @@ body {
   font-size: var(--font--body-size);
   font-weight: var(--font--weight-normal);
   line-height: 1.5;
-  color: var(--color--navy-850, #494c6b);
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    color: #494c6b;
-  }
+  color: var(--text-color);
 }
 
 h1,

@@ -38,6 +38,32 @@ class AppView {
     this._taskList.addEventListener('click', handler);
   }
 
+  /**
+   * Attach theme toggle handler
+   * Listens for clicks on the theme button
+   */
+  addHandlerThemeToggle(handler) {
+    if (!this._btnTheme) return;
+    this._btnTheme.addEventListener('click', handler);
+  }
+
+  /**
+   * Update the theme in the DOM and button state
+   * @param {string} theme - 'light' or 'dark'
+   */
+  updateTheme(theme) {
+    // Set data attribute on root element for CSS targeting
+    document.documentElement.setAttribute('data-theme', theme);
+
+    // Update button aria-label for screen readers
+    const label =
+      theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+    this._btnTheme.setAttribute('aria-label', label);
+
+    // Update button pressed state for accessibility
+    this._btnTheme.setAttribute('aria-pressed', theme === 'dark');
+  }
+
   addHandlerDragAndDrop(handler) {
     if (!this._taskList) return;
 
@@ -54,6 +80,44 @@ class AppView {
       if (!item) return;
       item.classList.remove('dragging');
     });
+
+    this._taskList.addEventListener('dragover', e => {
+      e.preventDefault();
+      const draggingItem = this._taskList.querySelector('.dragging');
+      if (!draggingItem) return;
+
+      const afterElement = this._getDragAfterElement(e.clientY);
+
+      if (afterElement == null) {
+        this._taskList.appendChild(draggingItem);
+      } else {
+        this._taskList.insertBefore(draggingItem, afterElement);
+      }
+    });
+
+    this._taskList.addEventListener('drop', e => {
+      e.preventDefault();
+      handler();
+    });
+  }
+
+  _getDragAfterElement(y) {
+    const draggableElements = [
+      ...this._taskList.querySelectorAll('.tasks-list__item:not(.dragging)'),
+    ];
+
+    return draggableElements.reduce(
+      (closest, child) => {
+        const box = child.getBoundingClientRect();
+        const offset = y - box.top - box.height / 2;
+        if (offset < 0 && offset > closest.offset) {
+          return { offset: offset, element: child };
+        } else {
+          return closest;
+        }
+      },
+      { offset: Number.NEGATIVE_INFINITY }
+    ).element;
   }
 
   getQuery() {

@@ -1,3 +1,8 @@
+// Theme constants
+const THEME_STORAGE_KEY = 'todo-app-theme';
+const THEME_LIGHT = 'light';
+const THEME_DARK = 'dark';
+
 export const state = {
   tasks: [
     {
@@ -31,6 +36,8 @@ export const state = {
       completed: true,
     },
   ],
+  // Theme state - 'light' or 'dark'
+  theme: null,
   numberOfIncompleteTasks() {
     return this.tasks.filter(t => !t.completed).length;
   },
@@ -76,4 +83,49 @@ export const clearCompletedTasks = function () {
   const incompleteTasks = state.tasks.filter(t => !t.completed);
   state.tasks = incompleteTasks;
   return state.tasks;
+};
+
+export const reorderTasks = function (newOrder) {
+  const reorderedTasks = newOrder
+    .map(id => state.tasks.find(task => task.id === id))
+    .filter(Boolean);
+  state.tasks = reorderedTasks;
+  return state.tasks;
+};
+
+/**
+ * Get the initial theme based on:
+ * 1. User's saved preference in localStorage
+ * 2. System preference (prefers-color-scheme)
+ * 3. Default to light theme
+ */
+export const initTheme = function () {
+  // Check localStorage first
+  const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+  if (savedTheme === THEME_LIGHT || savedTheme === THEME_DARK) {
+    state.theme = savedTheme;
+    return state.theme;
+  }
+
+  // Check system preference
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  state.theme = prefersDark ? THEME_DARK : THEME_LIGHT;
+  return state.theme;
+};
+
+/**
+ * Toggle between light and dark themes
+ * Persists the choice to localStorage
+ */
+export const toggleTheme = function () {
+  state.theme = state.theme === THEME_LIGHT ? THEME_DARK : THEME_LIGHT;
+  localStorage.setItem(THEME_STORAGE_KEY, state.theme);
+  return state.theme;
+};
+
+/**
+ * Get the current theme
+ */
+export const getTheme = function () {
+  return state.theme;
 };

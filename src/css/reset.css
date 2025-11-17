@@ -37,6 +37,9 @@ ol[role='list'] {
 body {
   min-height: 100vh;
   line-height: 1.5;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Set shorter line heights on headings and interactive elements */

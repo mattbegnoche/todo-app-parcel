@@ -20,26 +20,30 @@
   position: relative;
   width: 100%;
   background-color: var(--task--background-color);
+  color: var(--text-color);
   padding: var(--task--padding-vertical) var(--task--padding-horizontal)
     var(--task--padding-vertical) 4.5rem;
   border-radius: var(--task--border-radius);
   box-shadow: var(--task--box-shadow);
   border: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-/* 
-.form__group input:focus-visible {
-  outline: 0.125rem solid black;
-} */
+
+.form__group input::placeholder {
+  color: var(--text-color-muted);
+}
 
 .input__circle {
+  flex-shrink: 0;
   width: 1.5rem;
   height: 1.5rem;
-  border: var(--border--width) solid var(--color--purple-100);
+  border: var(--border--width) solid var(--border-color);
   border-radius: 50%;
   position: absolute;
   left: var(--task--padding-horizontal);
   top: 50%;
   transform: translateY(-50%);
+  transition: border-color 0.3s ease;
 }
 
 /* TASK ITEM */
@@ -50,7 +54,8 @@
   column-gap: 1.5rem;
   margin: 0;
   padding: var(--task--padding-vertical) var(--task--padding-horizontal);
-  border-bottom: var(--border--width) solid var(--color--purple-100, #d1d2da);
+  border-bottom: var(--border--width) solid var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 /* TASK LABEL */
@@ -60,18 +65,20 @@
 
 /* TASK CHECKBOX */
 .tasks-list__item:has(input[type='checkbox']:checked) {
-  color: var(--color--purple-300);
+  color: var(--text-color-muted);
   text-decoration: line-through;
 }
 
 .tasks-list__item input[type='checkbox'] {
+  flex-shrink: 0;
   appearance: none;
   width: 1.5rem;
   height: 1.5rem;
-  border: var(--border--width) solid var(--color--purple-100);
+  border: var(--border--width) solid var(--border-color);
   border-radius: 50%;
   cursor: pointer;
   position: relative;
+  transition: border-color 0.3s ease;
 }
 
 .tasks-list__item input[type='checkbox']:checked {
@@ -92,15 +99,53 @@
   margin-left: auto;
 }
 
+@media (hover: none) and (pointer: coarse) {
+  .tasks-list__item .btn__delete-task {
+    display: flex;
+  }
+}
 .tasks-overview {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  column-gap: 1.5rem;
+  row-gap: 1.5rem;
   padding: 1rem var(--task--padding-horizontal) var(--task--padding-vertical)
     var(--task--padding-horizontal);
-  font-size: 0.875rem;
+  font-size: var(--font--small-size);
+  color: var(--text-color-muted);
+  transition: color 0.3s ease;
 }
 
 .task-filters {
   display: flex;
   column-gap: 1.19rem;
+}
+
+/* Drag and Drop Styles */
+.tasks-list__item[draggable='true'] {
+  cursor: move;
+  cursor: grab;
+}
+
+.tasks-list__item.dragging {
+  opacity: 0.5;
+  cursor: grabbing;
+}
+
+.tasks-list__item:not(.dragging) {
+  transition: transform 0.2s ease;
+}
+
+.tasks__help-text {
+  text-align: center;
+  margin: 3rem auto 0 auto;
+  font-size: var(--font--small-size);
+  color: var(--text-color-muted);
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .tasks__help-text {
+    display: none;
+  }
 }

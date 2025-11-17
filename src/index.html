@@ -4,41 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TODO App</title>
+    <link rel="icon" href="./images/favicon.png" type="image/png" />
     <link rel="stylesheet" href="./css/index.css" />
     <script type="module" src="./js/controller.js"></script>
   </head>
   <body>
     <div class="background">
-      <div class="background__img">
-        <picture>
-          <!-- Dark mode, mobile -->
-          <source
-            srcset="./images/bg-mobile-dark.jpg"
-            media="(max-width: 23.4375rem) and (prefers-color-scheme: dark)"
-          />
-
-          <!-- Light mode, mobile -->
-          <source
-            srcset="./images/bg-mobile-light.jpg"
-            media="(max-width: 23.4375rem) and (prefers-color-scheme: light)"
-          />
-
-          <!-- Dark mode, desktop -->
-          <source
-            srcset="./images/bg-desktop-dark.jpg"
-            media="(min-width: 23.4376rem) and (prefers-color-scheme: dark)"
-          />
-
-          <!-- Light mode, desktop -->
-          <source
-            srcset="./images/bg-desktop-light.jpg"
-            media="(min-width: 23.4376rem) and (prefers-color-scheme: light)"
-          />
-
-          <!-- Fallback (in case prefers-color-scheme unsupported) -->
-          <img src="./images/bg-desktop-light.jpg" alt="Hero image" />
-        </picture>
-      </div>
+      <div class="background__img"></div>
     </div>
     <header class="header">
       <h1 class="header__title">TODO</h1>
@@ -166,6 +138,7 @@
             <button class="btn btn__clear">Clear Completed</button>
           </div>
         </div>
+        <p class="tasks__help-text">Drag and drop to reorder lists</p>
       </section>
     </main>
   </body>

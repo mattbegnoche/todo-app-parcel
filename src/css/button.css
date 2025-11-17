@@ -1,32 +1,82 @@
+/* Theme Toggle Button */
 .btn__theme {
   color: var(--color--white, #fff);
   width: 1.625rem;
   height: 1.625rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
 }
 
-.btn__icon.btn__icon--light {
+.btn__theme:hover {
+  transform: scale(1.1);
+}
+
+.btn__theme:focus-visible {
+  outline: 2px solid var(--color--blue-500);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Show/hide icons based on theme */
+:root[data-theme='light'] .btn__icon--dark,
+:root[data-theme='dark'] .btn__icon--light {
   display: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  .btn__icon.btn__icon--dark {
-    display: none;
-  }
-  .btn__icon.btn__icon--light {
-    display: block;
-  }
+:root[data-theme='light'] .btn__icon--light,
+:root[data-theme='dark'] .btn__icon--dark {
+  display: block;
 }
 
+/* Filter Buttons */
 .btn__filter {
   font-weight: var(--font--weight-bold);
-  color: #9495a5;
+  color: var(--text-color-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
 }
 
 .btn__filter:hover {
-  color: var(--color--navy-850);
+  color: var(--text-color-hover);
 }
 
 .btn__filter--active {
   color: var(--color--blue-500);
   font-weight: var(--font--weight-bold);
+}
+
+/* Clear Completed Button */
+.btn__clear {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: var(--text-color-muted);
+  transition: color 0.2s ease;
+}
+
+.btn__clear:hover {
+  color: var(--text-color-hover);
+}
+
+/* Delete Task Button */
+.btn__delete-task {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.2s ease;
+}
+
+.btn__delete-task:hover {
+  opacity: 0.7;
 }

@@ -5,15 +5,32 @@
   width: 100%;
 }
 
-/* Dark Theme using @media (prefers-color-scheme: dark) */
-/* @media (prefers-color-scheme: dark) {
-  .background {
-    background-color: var(--color--navy-950, #171823);
-  }
-} */
-
-.background img {
+.background__img {
   object-fit: cover;
   width: 100%;
   min-height: 18rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+:root[data-theme='light'] .background__img {
+  background-image: url('../images/bg-desktop-light.jpg');
+}
+
+:root[data-theme='dark'] .background__img {
+  background-image: url('../images/bg-desktop-dark.jpg');
+}
+
+@media (max-width: 24rem) {
+  .background__img {
+    min-height: 16rem;
+  }
+
+  :root[data-theme='light'] .background__img {
+    background-image: url('../images/bg-mobile-light.jpg');
+  }
+  :root[data-theme='dark'] .background__img {
+    background-image: url('../images/bg-mobile-dark.jpg');
+  }
 }
