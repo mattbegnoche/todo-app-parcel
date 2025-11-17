@@ -2,7 +2,6 @@ import * as model from './model.js';
 import appView from './view.js';
 
 const controlTasks = function () {
-  // Render Tasks
   appView.renderTasks(model.state.tasks);
 };
 
@@ -62,35 +61,20 @@ const controlDragDrop = function () {
   model.reorderTasks(newOrder);
 };
 
-/**
- * Handle theme toggle button click
- * Toggles between light and dark mode and updates the view
- */
 const controlThemeToggle = function () {
-  // Toggle theme in model (also persists to localStorage)
   const newTheme = model.toggleTheme();
 
-  // Update view to reflect new theme
   appView.updateTheme(newTheme);
 };
 
-/**
- * Initialize theme on page load
- * Respects user's saved preference or system preference
- */
 const controlThemeInit = function () {
-  // Get initial theme from model (checks localStorage and system preference)
   const theme = model.initTheme();
 
-  // Apply theme to view
   appView.updateTheme(theme);
 };
 
 const init = function () {
-  // Initialize theme first (before rendering)
-  controlThemeInit();
-
-  // Render tasks and setup handlers
+  appView.addHandlerInitTheme(controlThemeInit);
   appView.addHandlerRender(controlTasks);
   appView.addHandlerRender(controlCounter);
   appView.addHandlerFilter(controlFilter);

@@ -8,7 +8,7 @@ export const state = {
     {
       id: 1,
       text: 'Complete project documentation',
-      completed: false,
+      completed: true,
     },
     {
       id: 2,
@@ -28,12 +28,12 @@ export const state = {
     {
       id: 5,
       text: 'Deploy to staging',
-      completed: true,
+      completed: false,
     },
     {
       id: 6,
-      text: 'Share with your mom',
-      completed: true,
+      text: 'Share with mom',
+      completed: false,
     },
   ],
   // Theme state - 'light' or 'dark'
@@ -68,7 +68,7 @@ export const addTask = function (text) {
     text: text,
     completed: false,
   };
-  state.tasks.unshift(task);
+  state.tasks.push(task);
   return state.tasks;
 };
 
@@ -93,39 +93,24 @@ export const reorderTasks = function (newOrder) {
   return state.tasks;
 };
 
-/**
- * Get the initial theme based on:
- * 1. User's saved preference in localStorage
- * 2. System preference (prefers-color-scheme)
- * 3. Default to light theme
- */
 export const initTheme = function () {
-  // Check localStorage first
   const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
   if (savedTheme === THEME_LIGHT || savedTheme === THEME_DARK) {
     state.theme = savedTheme;
     return state.theme;
   }
 
-  // Check system preference
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   state.theme = prefersDark ? THEME_DARK : THEME_LIGHT;
   return state.theme;
 };
 
-/**
- * Toggle between light and dark themes
- * Persists the choice to localStorage
- */
 export const toggleTheme = function () {
   state.theme = state.theme === THEME_LIGHT ? THEME_DARK : THEME_LIGHT;
   localStorage.setItem(THEME_STORAGE_KEY, state.theme);
   return state.theme;
 };
 
-/**
- * Get the current theme
- */
 export const getTheme = function () {
   return state.theme;
 };

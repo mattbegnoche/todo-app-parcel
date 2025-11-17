@@ -10,6 +10,10 @@ class AppView {
   _btnFilters = document.querySelectorAll('.btn__filter');
   _btnClearCompleted = document.querySelector('.btn__clear');
 
+  addHandlerInitTheme(handler) {
+    window.addEventListener('load', handler);
+  }
+
   addHandlerRender(handler) {
     window.addEventListener('load', handler);
   }
